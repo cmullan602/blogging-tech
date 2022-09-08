@@ -1,5 +1,5 @@
 const User = require('./User');
-const FoodItem = require('./FoodItem');
+const FoodItem = require('./Comment');
 
 // Create associations
 User.hasMany(FoodItem, {
