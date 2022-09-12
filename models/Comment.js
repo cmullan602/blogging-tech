@@ -7,9 +7,10 @@ Comment.init(
   {
     id: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      autoIncrement: true,
+      primaryKey:true
     },
-    comment_content: {
+    content: {
         type: DataTypes.STRING(500),
         allowNull: false
       },
