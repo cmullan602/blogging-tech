@@ -4,18 +4,18 @@ const withAuth = require('../utils/auth');
 
 
 // Route "/"
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const userData = await User.findAll({
-      attributes: { exclude: ['password'] }
+    const postData = await Post.findAll({
+      include: [User]
     });
 
-    const users = userData.map((project) => project.get({ plain: true }));
+    const posts = postData.map((post) => post.get({ plain: true }));
 
     res.render('homepage', {
-      users,
+
+      posts,
      
-      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -33,63 +33,15 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-module.exports = router;
-
-
-// Route "/dashboard"
-router.get('/dashboard', async (req, res) => {
-  try {
-    const dbPostData = await Post.findAll({
-      include: [
-        {
-          model: User
-        },
-        {
-          model: Comment
-        }
-      ],
-    });
-
-    const posts = dbPostData.map((post) =>
-      post.get({ plain: true })
-    );
-    res.render('dashboard', {
-      posts,
-      loggedIn: req.session.loggedIn,
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
+router.get('/sign-up', (req,res) => {
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
   }
-});
 
-// Route "/dashboard/new"
-router.get('/dashboard/new', (req, res) => {
-  res.render('dashboard/new'
-    );
+  res.render('sign-up');
 })
 
-// Route "/dashboard/edit/:id"
-router.get('/dashboard/edit/:id', async (req, res) => {
-  try {
-    const dbPostData = await Post.findByPk({
-      include: [
-        {
-          model: User
-        },
-        {
-          model: Comment
-        }
-      ],
-    });
-
-    const post = dbPostData.get({ plain: true });
-    res.render('dashboard_post_edit', { post });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
 
 
 // Route "/post/:id"
@@ -102,15 +54,20 @@ router.get('/post/:id', async (req, res) => {
           model: User
         },
         {
-          model: Comment
+          model: Comment,
+          include: [User]
         }
       ],
     });
-
-    const post = dbPostData.get({ plain: true });
+    if (dbPostData){
+      const post = dbPostData.get({ plain: true });
     res.render('post', { post });
+    }else {res.status(404).end()}
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
+
+
+module.exports = router;
