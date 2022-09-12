@@ -5,14 +5,22 @@ class Post extends Model {}
 
 Post.init(
   {
-    name: {
-      type: DataTypes.STRING(100),
+    id: {
+      type: DataTypes.INTEGER,
       allowNull: false
     },
-    quantity: {
+    title: {
       type: DataTypes.STRING(40),
       allowNull: false
     },
+    post_content: {
+        type: DataTypes.STRING(500),
+        allowNull: false
+      },
+    date_time: {
+        type: DataTypes.DATE,
+        allowNull: false
+      },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
@@ -25,7 +33,7 @@ Post.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'food_item',
+    modelName: 'post',
   }
 );
 

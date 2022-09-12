@@ -1,5 +1,5 @@
 module.exports = {
-  sample: () => {
-    return 'sample';
-  },
+  format_time: (date) => {
+    return date.toLocaleTimeString();
+  }
 };

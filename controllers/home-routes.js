@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 
@@ -37,9 +37,80 @@ module.exports = router;
 
 
 // Route "/dashboard"
+router.get('/dashboard', async (req, res) => {
+  try {
+    const dbPostData = await Post.findAll({
+      include: [
+        {
+          model: User
+        },
+        {
+          model: Comment
+        }
+      ],
+    });
+
+    const posts = dbPostData.map((post) =>
+      post.get({ plain: true })
+    );
+    res.render('dashboard', {
+      posts,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 // Route "/dashboard/new"
+router.get('/dashboard/new', (req, res) => {
+  res.render('dashboard/new'
+    );
+})
 
 // Route "/dashboard/edit/:id"
+router.get('/dashboard/edit/:id', async (req, res) => {
+  try {
+    const dbPostData = await Post.findByPk({
+      include: [
+        {
+          model: User
+        },
+        {
+          model: Comment
+        }
+      ],
+    });
+
+    const post = dbPostData.get({ plain: true });
+    res.render('dashboard_post_edit', { post });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 
 // Route "/post/:id"
+
+router.get('/post/:id', async (req, res) => {
+  try {
+    const dbPostData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User
+        },
+        {
+          model: Comment
+        }
+      ],
+    });
+
+    const post = dbPostData.get({ plain: true });
+    res.render('post', { post });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
