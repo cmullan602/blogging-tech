@@ -10,18 +10,21 @@
 </head>
 
 
-  <header class="display-flex justify-space-between align-center p-2">
+  <header class="p-2 bg-violet-900 flex">
     <h1>
       Blogging Tech
     </h1>
     <!-- TODO: Add a comment describing the functionality of this helper -->
-    {{#if logged_in}}
-    <nav>
-      <button class="btn" id="logout">logout</button>
+    {{!-- {{#if logged_in}} --}}
+    <nav class="ml-auto">
+      <a href="/"> Home </a>
+      <a href="/dashboard"> Dashboard </a>
+      <a href="/login"> Login </a>
+      <button class="btn" id="logout">Logout</button>
     </nav>
-    {{/if}}
+    {{!-- {{/if}} --}}
   </header>
-  <main class="container container-fluid mt-5">
+  <main class="my-8 flex ">
     {{{ body }}}
   </main>
   <footer>
@@ -29,9 +32,9 @@
   </footer>
 
   <!-- TODO: Add a comment describing the functionality of this helper -->
-  {{#if logged_in}}
+  {{!-- {{#if logged_in}} --}}
   <script src="/js/logout.js"></script>
-  {{/if}}
+  {{!-- {{/if}} --}}
 </body>
 
 </html>
