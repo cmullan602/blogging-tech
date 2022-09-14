@@ -1,13 +1,25 @@
 {{#each posts as |post| }}
-<div class="flex-center border-4 p-3 m-2 ">
-  <div class="col-md-6">
-    <h2>{{post.title}}</h2>
+  <div class="card m-6">
+  <header class="card-header has-background-primary">
+    <p class="card-header-title">
+      {{post.title}}
+    </p>
+  </header>
+  <div class="card-content has-background-grey-lighter">
+    <div class="content">
+     {{post.post_content}}
+      <br>
+      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+    </div>
   </div>
-  <div class="col-md-6">
-    <h3>{{post.post_content}}</h3>
+  <footer class="card-footer">
+    <a href="#" class="card-footer-item">Edit</a>
+    <a href="/post/{{post.id}}" class="card-footer-item">Go to Post</a>
+    <a href="#" class="card-footer-item">Delete</a>
+  </footer>
   </div>
-</div>
 {{/each}}
 
-
-<a href="/dashboard/new"> New blog Post </a>
+<a href="/dashboard/new" class="button is-large is-responsive justify-content-center">
+  New Post
+</a>
