@@ -1,4 +1,4 @@
-{{#each posts as |post| }}
+
   <div class="card m-6">
   <header class="card-header has-background-primary">
     <p class="card-header-title">
@@ -13,8 +13,27 @@
     </div>
   </div>
   <footer class="card-footer">
-    <a href="/post/{{post.id}}" class="card-footer-item">Go to Post</a>
+  </footer>
+  </div>
+  
+  
+  {{#each posts.comments as |comment| }}
+  <div class="card m-6">
+  <header class="card-header has-background-primary">
+    <p class="card-header-title">
+      {{comments.content}} 
+    </p>
+  </header>
+  <div class="card-content has-background-grey-lighter">
+    <div class="content">
+     {{content}}
+      <br>
+      <br>
+      <time datetime="2016-1-1">- {{format_date createdAt}}</time>
+    </div>
+  </div>
+  <footer class="card-footer">
+    <a  class="card-footer-item">Go to Post</a>
   </footer>
   </div>
 {{/each}}
-

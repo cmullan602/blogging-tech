@@ -14,7 +14,8 @@ router.get('/', async (req, res) => {
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
-    console.log(posts);
+    
+    console.log(posts)
     res.render('homepage', {
 
       posts,
@@ -57,11 +58,14 @@ router.get('/post/:id', async (req, res) => {
     const dbPostData = await Post.findByPk(req.params.id, {
       include: 
         {
-          model: Comment
+          model: { Comment },
+          attributes: ['content'],
         }
     });
     if (dbPostData){
       const post = dbPostData.get({ plain: true });
+
+      console.log(post)
 
       console.log(post)
     res.render('post', 
