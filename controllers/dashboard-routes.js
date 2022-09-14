@@ -15,8 +15,6 @@ router.get('/', withAuth, async (req, res) => {
         post.get({ plain: true })
       );
 
-      console.log(posts);
-
       res.render('logged-in-posts', {
         layout: 'dashboard',
         posts,

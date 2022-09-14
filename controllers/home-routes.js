@@ -14,8 +14,6 @@ router.get('/', async (req, res) => {
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
-
-    console.log(posts);
     
     res.render('homepage', {
 
@@ -57,21 +55,18 @@ router.get('/sign-up', (req,res) => {
 router.get('/post/:id', async (req, res) => {
   try {
     const dbPostData = await Post.findByPk(req.params.id, {
-      include: [
+      include: 
         {
-          model: User
-        },
-        {
-          model: Comment,
-          include: [User]
+          model: Comment
         }
-      ],
     });
     if (dbPostData){
       const post = dbPostData.get({ plain: true });
+
+      console.log(post)
     res.render('post', 
     { post },
-    
+
     );
     }else {res.status(404).end()}
   } catch (err) {
