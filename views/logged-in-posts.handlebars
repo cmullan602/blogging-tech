@@ -8,8 +8,9 @@
   <div class="card-content has-background-grey-lighter">
     <div class="content">
      {{post.post_content}}
+    <br>
       <br>
-      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+      <time datetime="2016-1-1">{{format_date post.createdAt}}</time>
     </div>
   </div>
   <footer class="card-footer">
