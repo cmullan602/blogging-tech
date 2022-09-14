@@ -54,29 +54,47 @@ router.get('/sign-up', (req,res) => {
 // Route "/post/:id"
 
 router.get('/post/:id', async (req, res) => {
-  try {
-    const dbPostData = await Post.findByPk(req.params.id, {
-      include: 
-        {
-          model: Comment ,
-          attributes: ['content'],
-        }
-    });
-    if (dbPostData){
-      const post = dbPostData.get({ plain: true });
+  Post.findByPk(req.params.id, {
+       include: [
+       User,
+         {
+           model: Comment,
+           include: {
+             model: User
+           }
+         },
+         
+       ],
+     })
+     .then((dbPostData) => {
+       if (dbPostData) {
+         const post = dbPostData.get({ plain: true });
 
-      console.log(post)
-      
-    res.render('post', 
-    { post },
-
-    );
-    }else {res.status(404).end()}
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
+         console.log(post)
+ 
+         res.render("post", { 
+           post,
+           logged_in: req.session.logged_in });
+       } else {
+         res.status(404).end();
+       }
+     })
+     .catch((err) => {
+       res.status(500).json(err);
+     });
+ });
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 module.exports = router;
