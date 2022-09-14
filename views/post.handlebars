@@ -9,7 +9,7 @@
     <div class="content">
      {{post.post_content}}
       <br>
-      <time datetime="2016-1-1">{{post.createdDate}}</time>
+      <time datetime="2016-1-1">{{post.createdAt}}</time>
     </div>
   </div>
   <footer class="card-footer">
@@ -21,7 +21,7 @@
   <div class="card m-6">
   <header class="card-header has-background-primary">
     <p class="card-header-title">
-      {{comments.content}} 
+      {{content}} 
     </p>
   </header>
   <div class="card-content has-background-grey-lighter">
@@ -29,7 +29,7 @@
      {{content}}
       <br>
       <br>
-      <time datetime="2016-1-1">- {{format_date createdAt}}</time>
+      <time datetime="2016-1-1">- </time>
     </div>
   </div>
   <footer class="card-footer">

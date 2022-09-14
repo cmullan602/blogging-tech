@@ -58,7 +58,7 @@ router.get('/post/:id', async (req, res) => {
     const dbPostData = await Post.findByPk(req.params.id, {
       include: 
         {
-          model: { Comment },
+          model: Comment ,
           attributes: ['content'],
         }
     });
@@ -66,8 +66,7 @@ router.get('/post/:id', async (req, res) => {
       const post = dbPostData.get({ plain: true });
 
       console.log(post)
-
-      console.log(post)
+      
     res.render('post', 
     { post },
 
