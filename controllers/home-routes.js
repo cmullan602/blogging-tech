@@ -7,11 +7,16 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
-      include: [User]
+      include: {
+        model: User,
+        attributes: ['id', 'username']
+      }
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
 
+    console.log(posts);
+    
     res.render('homepage', {
 
       posts,
@@ -33,6 +38,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+//sign-up route
 router.get('/sign-up', (req,res) => {
   if (req.session.logged_in) {
     res.redirect('/');
