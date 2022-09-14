@@ -69,7 +69,10 @@ router.get('/post/:id', async (req, res) => {
     });
     if (dbPostData){
       const post = dbPostData.get({ plain: true });
-    res.render('post', { post });
+    res.render('post', 
+    { post },
+    
+    );
     }else {res.status(404).end()}
   } catch (err) {
     console.log(err);
