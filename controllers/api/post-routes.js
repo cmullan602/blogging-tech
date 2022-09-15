@@ -1,14 +1,17 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
-const withAuth = require('../../utils/auth');
+const { withAuthApi } = require('../../utils/auth');
 
 // The `/api/products` endpoint
 
 
 //create new post
-router.post('/', withAuth, async (req, res) => {
+router.post('/', withAuthApi, async (req, res) => {
     try {
-      const postData = await Post.create({...req.body, userId: req.session.userId});
+      const postData = await Post.create({
+        ...req.body, 
+        userId: req.session.userId
+      });
       res.status(200).json(postData);
     } catch (err) {
       res.status(400).json(err);
