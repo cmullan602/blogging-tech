@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
-const { withAuthApi } = require('../../utils/auth');
+const { withAuthApi, withAuth } = require('../../utils/auth');
 
 // The `/api/products` endpoint
 
