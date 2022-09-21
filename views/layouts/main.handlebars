@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello Bulma!</title>
+  <title>Blogging Tech</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 
@@ -18,7 +18,7 @@
       <h1 class="navbar-item is-primary">
         Blogging Tech
       </h1>
-        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+        <a role="button" class="navbar-burger is-dark" data-target="navMenu" aria-label="menu" aria-expanded="false">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -27,11 +27,11 @@
 
     <div class="navbar-menu" id="navMenu">
       <div class="navbar-start">
-        <a class="navbar-item" href="/">
+        <a class="navbar-item has-text-weight-bold" href="/">
           Home
         </a>
 
-        <a class="navbar-item" href="/dashboard">
+        <a class="navbar-item has-text-weight-bold" href="/dashboard">
           Dashboard
         </a>
 
@@ -45,7 +45,7 @@
               <strong>Logout</strong>
             </button>
             {{else}}
-            <a class="button is-primary" href="/login">
+            <a class="button is-primary has-text-weight-bold" href="/login">
               Log in
             </a>
             {{/if}}
@@ -55,7 +55,7 @@
     </div>
   </nav>
 </header>
-<main class="container ">
+<main class="container">
   {{{ body }}}
 </main>
 <footer>

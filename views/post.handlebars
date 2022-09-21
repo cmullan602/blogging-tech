@@ -6,10 +6,11 @@
     </p>
   </header>
   <div class="card-content has-background-grey-lighter">
-    <div class="content">
+    <div class="content is-family-monospace">
      {{post.post_content}} 
       <br>
-      <time datetime="2016-1-1">{{format_date post.createdAt}}</time>
+      <br>
+      <time>- {{format_date post.createdAt}}</time>
     </div>
   </div>
   <footer class="card-footer">
@@ -25,11 +26,11 @@
     </p>
   </header>
   <div class="card-content has-background-grey-lighter">
-    <div class="content">
+    <div class="content is-family-monospace">
      {{content}}
       <br>
       <br>
-      <time datetime="2016-1-1">{{user.username}}, {{format_date comment.createdAt}} </time>
+      <time datetime="2016-1-1">- {{user.username}}, {{format_date comment.createdAt}} </time>
     </div>
   </div>
   </div>
