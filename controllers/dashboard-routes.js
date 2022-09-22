@@ -36,7 +36,7 @@ router.get('/', withAuth, async (req, res) => {
   
   
   // Route "/dashboard/edit/:id"
-  router.get('edit/:id', async (req, res) => {
+  router.get('/edit/:id', async (req, res) => {
     try {
       const dbPostData = await Post.findByPk(req.params.id);
 
@@ -44,7 +44,8 @@ router.get('/', withAuth, async (req, res) => {
         const post = dbPostData.get({ plain: true });
         res.render('post-edit', {
             layout: 'dashboard',
-            post
+            post,
+            logged_in: req.session.logged_in
         });
     }else{
         res.status(404).end();
