@@ -1,20 +1,20 @@
 const addPostHandler = async (event) => {
     event.preventDefault();
   
-    const title = document.querySelector('#email-address').value.trim();
-    const post_content = document.querySelector('#password').value.trim();
+    const title = document.querySelector('#title').value.trim();
+    const post_content = document.querySelector('#post-content').value.trim();
   
-    if (email && password) {
-      const response = await fetch('/api/users/login', {
+    if (title && post_content) {
+      const response = await fetch('/api/post', {
         method: 'POST',
-        body: JSON.stringify({ content, password }),
+        body: JSON.stringify({ title, post_content}),
         headers: { 'Content-Type': 'application/json' },
       });
   
       if (response.ok) {
-        document.location.replace('/');
+        document.location.replace('/dashboard');
       } else {
-        alert('Failed to log in.');
+        alert('Failed to post.');
       }
     }
   };
@@ -22,5 +22,5 @@ const addPostHandler = async (event) => {
   
   
   document
-    .querySelector('.add-post')
+    .querySelector('.new-post-form')
     .addEventListener('submit', addPostHandler);

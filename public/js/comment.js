@@ -1,18 +1,18 @@
 const commentFormHandler = async (event) => {
     event.preventDefault();
   
-    const comment_content = document.querySelector('#comment-content').value.trim();
-    const imagesElement = document.querySelector('#images');
+    const content = document.querySelector('#comment-content').value.trim();
+    const postElement = document.querySelector('#post');
   
-    if (comment_content) {
+    if (content) {
       const response = await fetch('/api/comment', {
         method: 'POST',
-        body: JSON.stringify({ comment_content, image_id: imagesElement.dataset.id}),
+        body: JSON.stringify({ content, post_id: postElement.dataset.id}),
         headers: { 'Content-Type': 'application/json' },
       });
   
       if (response.ok) {
-        document.location.replace('/image/'+ imagesElement.dataset.id);
+        document.location.replace('/post/'+ postElement.dataset.id);
       } else {
         alert('Failed to post comment.');
       }
@@ -21,4 +21,4 @@ const commentFormHandler = async (event) => {
   
   document
     .querySelector('#new-comment-form')
-    .addEventListener('submit', commentFormHandler);
+    .addEventListener('#submit', commentFormHandler);

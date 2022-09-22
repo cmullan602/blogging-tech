@@ -1,13 +1,12 @@
-
-  <div class="card m-6">
+<div class="card m-6" id="post" data-id="{{post.id}}">
   <header class="card-header has-background-primary">
     <p class="card-header-title">
       {{post.title}} - {{post.user.username}}
     </p>
   </header>
   <div class="card-content has-background-grey-lighter">
-    <div class="content is-family-monospace">
-     {{post.post_content}} 
+    <div class="content is-family-monospace" >
+      {{post.post_content}}
       <br>
       <br>
       <time>- {{format_date post.createdAt}}</time>
@@ -15,11 +14,11 @@
   </div>
   <footer class="card-footer">
   </footer>
-  </div>
-  
-  
-  {{#each post.comments as |comment| }}
-  <div class="card m-6">
+</div>
+
+
+{{#each post.comments as |comment| }}
+<div class="card m-6">
   <header class="card-header has-background-primary">
     <p class="card-header-title">
       comment
@@ -27,30 +26,37 @@
   </header>
   <div class="card-content has-background-grey-lighter">
     <div class="content is-family-monospace">
-     {{content}}
+      {{content}}
       <br>
       <br>
       <time datetime="2016-1-1">- {{user.username}}, {{format_date comment.createdAt}} </time>
     </div>
   </div>
-  </div>
+</div>
 {{/each}}
 
 {{#if logged_in}}
-<form id="new-comment-form" class="card">
+<div class="box m-6 has-background-primary-light">
+
+  <form class="box has-background-grey-lighter" id="new-comment-form">
     <div class="card-header">
-      <h3>Add New Comment</h3>
+      <h3>Add New Comment:</h3>
     </div>
-
-    <div class="card-body">
-      <input type="hidden" name="post-id" value="{{post.id}}" />
-
-      <label class="form-label" for="comment-body">Comment</label>
-
-      <textarea name="comment-body" class="form-input"></textarea>
-
-      <button type="submit" class="btn">Submit</button>
+    <div class="field">
+      <div class="control">
+        <textarea class="textarea is-small" id="comment-content" placeholder="Be nice!"></textarea>
+      </div>
+    </div>
+    <div class="field">
+      <p class="control">
+        <button type="submit" class="button is-success submit mt-3" id="submit">
+          Submit
+        </button>
+      </p>
     </div>
   </form>
+
 </div>
+</div>
+<script src="/js/comment.js"></script>
 {{/if}}
