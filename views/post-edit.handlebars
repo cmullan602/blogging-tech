@@ -13,7 +13,10 @@
 </div>
 <div class="field">
   <p class="control">
-    <button onclick="editPostHandler({{post.id}})" data-editclass="edit-button" type="submit" class="button is-success submit mt-3" id="post-edit">
+    <button onclick="deletePostHandler({{post.id}})" type="delete" id="post-delete" data-postclass="delete-button" class=" button is-danger is-fullwidth has-text-weight-bold">Delete</button>
+  </p>
+  <p class="control">
+    <button onclick="editPostHandler({{post.id}})" data-editclass="edit-button" type="submit" class="button is-success submit mt-3 b is-fullwidth has-text-weight-bold" id="post-edit">
       Submit
     </button>
   </p>

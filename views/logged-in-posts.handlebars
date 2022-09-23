@@ -1,26 +1,38 @@
 {{#each posts as |post| }}
-  <div class="card m-6">
+<div class="card m-6">
   <header class="card-header has-background-primary">
-    <p class="card-header-title">
+    <p class="card-header-title is-underlined">
       {{post.title}}
     </p>
   </header>
   <div class="card-content has-background-grey-lighter">
-    <div class="content">
-     {{post.post_content}}
-    <br>
+    <div class="content is-family-monospace">
+      {{post.post_content}}
       <br>
-      <time datetime="2016-1-1">{{format_date post.createdAt}}</time>
+      <br>
+      <time datetime="2016-1-1">- {{format_date post.createdAt}}</time>
     </div>
   </div>
   <footer class="card-footer">
-    <a href="dashboard/edit/{{post.id}}" class="card-footer-item">Edit</a>
+    <a href="dashboard/edit/{{post.id}}" class="card-footer-item">Edit Post</a>
     <a href="/post/{{post.id}}" class="card-footer-item">Go to Post</a>
-    <button onclick="deletePostHandler({{post.id}})" type="delete" id="post-delete" data-postclass="delete-button" class="card-footer-item">Delete</button>
+
   </footer>
-  </div>
+</div>
 {{/each}}
 
-<a href="/dashboard/new" class="button is-large is-responsive justify-content-center">
-  New Post
-</a>
+<div class="container is-flex is-justify-content-center">
+  <a href="/dashboard/new" class="button is-large is-primary is-responsive justify-content-center is-active has-text-weight-bold">
+
+      <i class="icon-edit"></i>
+
+      <P> New Post</P>
+    </a>
+
+
+
+
+</div>
+  
+ 
+
