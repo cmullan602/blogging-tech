@@ -8,6 +8,8 @@ I used sql, node, heroku, handlebars and bulma throughout this project.
 
 I really enjoyed working on this project as it was a culmination of everything we've been working on in class up to this point.
 
+![bloggingTech](https://user-images.githubusercontent.com/104603239/208780305-ad949fb2-cab9-445a-9cd6-2889180c4690.png)
+
 ## Table of Contents 
 
 * [Installation](#installation)
